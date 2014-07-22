@@ -1,0 +1,13 @@
+dhtmlxSuite 4.0.2 what's new
+----------------------------------------------------------
+
+improved validation for grid and form
+layout - attaching layout to container fixed
+layout - attaching footer for 1C pattern fixed
+layout - hidden header fixed in IE8
+datastore - debug code and http check removed
+dhx4.ajax.method param added (ability to change request type for load/loadStruct)
+tabbar - hrefmode=ajax fixed (for xml config)
+calendar - set initial value via <input value> fixed
+libCompiler - dhtmlx_debug.css generation added
+menu - toplevel overflow fixed

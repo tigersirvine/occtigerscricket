@@ -1,0 +1,35 @@
+
+
+<link rel="stylesheet" type="text/css" href="/media/dhtmlx/dhtmlxMenu/codebase/skins/dhtmlxmenu_dhx_skyblue.css">
+
+<script src="/media/dhtmlx/dhtmlxMenu/codebase/dhtmlxcommon.js"></script>
+<script src="/media/dhtmlx/dhtmlxMenu/codebase/dhtmlxmenu.js"></script>
+<script src="/media/dhtmlx/dhtmlxMenu/codebase/ext/dhtmlxmenu_ext.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/media/css/menu.css">
+ 
+ <div id="menuObj" style="margin-top:5px;"></div>
+
+<script>
+
+var menu = new dhtmlXMenuObject("menuObj");
+menu.setIconsPath("/media/icons/");
+// initing;
+menu.addNewSibling(null, "home", "", false , "house.png");
+menu.addNewSeparator("home", "sep1");
+menu.addNewSibling("sep1", "players", "Players", false)
+menu.setHref("players", "/mainapp/players/", "blank");
+menu.addNewSeparator("players", "sep2");
+menu.addNewSibling("sep2", "practice", "Practice", false)
+menu.addNewSeparator("practice", "sep3");
+menu.addNewSibling("sep3", "availability", "Availability", false);
+menu.addNewSeparator("availability", "sep4");
+menu.addNewSibling("sep4", "join", "Join", false);
+menu.addNewSeparator("join", "sep5");
+menu.addNewSibling("sep5", "about", "About", false);
+menu.addNewSeparator("about", "sep6");
+</script>
+
+
+
+        
+ 

@@ -1,0 +1,368 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#     * Rearrange models' order
+#     * Make sure each model has one field with primary_key=True
+# Feel free to rename the models, but don't rename db_table values or field names.
+#
+# Also note: You'll have to insert the output of 'django-admin.py sqlcustom [appname]'
+# into your database.
+
+from django.db import models
+
+class Game(models.Model):
+    id = models.IntegerField(primary_key=True)
+    overs = models.IntegerField(null=True, blank=True)
+    venueid = models.ForeignKey(Venue, null=True, db_column='venueid', blank=True)
+    teama = models.ForeignKey(Team, db_column='teama')
+    teamb = models.ForeignKey(Team, db_column='teamb')
+    tosswonby = models.ForeignKey(Team, db_column='tosswonby')
+    firstinnings = models.ForeignKey(Team, db_column='firstinnings')
+    secondinnings = models.ForeignKey(Team, db_column='secondinnings')
+    class Meta:
+        db_table = u'GAME'
+
+class ColumnsPriv(models.Model):
+    host = models.CharField(max_length=180, primary_key=True, db_column='Host') # Field name made lowercase.
+    db = models.CharField(max_length=192, primary_key=True, db_column='Db') # Field name made lowercase.
+    user = models.CharField(max_length=48, primary_key=True, db_column='User') # Field name made lowercase.
+    table_name = models.CharField(max_length=192, primary_key=True, db_column='Table_name') # Field name made lowercase.
+    column_name = models.CharField(max_length=192, primary_key=True, db_column='Column_name') # Field name made lowercase.
+    timestamp = models.DateTimeField(db_column='Timestamp') # Field name made lowercase.
+    column_priv = models.CharField(max_length=93, db_column='Column_priv') # Field name made lowercase.
+    class Meta:
+        db_table = u'columns_priv'
+
+class Db(models.Model):
+    host = models.CharField(max_length=180, primary_key=True, db_column='Host') # Field name made lowercase.
+    db = models.CharField(max_length=192, primary_key=True, db_column='Db') # Field name made lowercase.
+    user = models.CharField(max_length=48, db_column='User') # Field name made lowercase.
+    select_priv = models.CharField(max_length=3, db_column='Select_priv') # Field name made lowercase.
+    insert_priv = models.CharField(max_length=3, db_column='Insert_priv') # Field name made lowercase.
+    update_priv = models.CharField(max_length=3, db_column='Update_priv') # Field name made lowercase.
+    delete_priv = models.CharField(max_length=3, db_column='Delete_priv') # Field name made lowercase.
+    create_priv = models.CharField(max_length=3, db_column='Create_priv') # Field name made lowercase.
+    drop_priv = models.CharField(max_length=3, db_column='Drop_priv') # Field name made lowercase.
+    grant_priv = models.CharField(max_length=3, db_column='Grant_priv') # Field name made lowercase.
+    references_priv = models.CharField(max_length=3, db_column='References_priv') # Field name made lowercase.
+    index_priv = models.CharField(max_length=3, db_column='Index_priv') # Field name made lowercase.
+    alter_priv = models.CharField(max_length=3, db_column='Alter_priv') # Field name made lowercase.
+    create_tmp_table_priv = models.CharField(max_length=3, db_column='Create_tmp_table_priv') # Field name made lowercase.
+    lock_tables_priv = models.CharField(max_length=3, db_column='Lock_tables_priv') # Field name made lowercase.
+    create_view_priv = models.CharField(max_length=3, db_column='Create_view_priv') # Field name made lowercase.
+    show_view_priv = models.CharField(max_length=3, db_column='Show_view_priv') # Field name made lowercase.
+    create_routine_priv = models.CharField(max_length=3, db_column='Create_routine_priv') # Field name made lowercase.
+    alter_routine_priv = models.CharField(max_length=3, db_column='Alter_routine_priv') # Field name made lowercase.
+    execute_priv = models.CharField(max_length=3, db_column='Execute_priv') # Field name made lowercase.
+    event_priv = models.CharField(max_length=3, db_column='Event_priv') # Field name made lowercase.
+    trigger_priv = models.CharField(max_length=3, db_column='Trigger_priv') # Field name made lowercase.
+    class Meta:
+        db_table = u'db'
+
+class Event(models.Model):
+    db = models.CharField(max_length=192, primary_key=True)
+    name = models.CharField(max_length=192, primary_key=True)
+    body = models.TextField()
+    definer = models.CharField(max_length=231)
+    execute_at = models.DateTimeField(null=True, blank=True)
+    interval_value = models.IntegerField(null=True, blank=True)
+    interval_field = models.CharField(max_length=54, blank=True)
+    created = models.DateTimeField()
+    modified = models.DateTimeField()
+    last_executed = models.DateTimeField(null=True, blank=True)
+    starts = models.DateTimeField(null=True, blank=True)
+    ends = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(max_length=54)
+    on_completion = models.CharField(max_length=24)
+    sql_mode = models.CharField(max_length=1434)
+    comment = models.CharField(max_length=192)
+    originator = models.IntegerField()
+    time_zone = models.CharField(max_length=192)
+    character_set_client = models.CharField(max_length=96, blank=True)
+    collation_connection = models.CharField(max_length=96, blank=True)
+    db_collation = models.CharField(max_length=96, blank=True)
+    body_utf8 = models.TextField(blank=True)
+    class Meta:
+        db_table = u'event'
+
+class Func(models.Model):
+    name = models.CharField(max_length=192, primary_key=True)
+    ret = models.IntegerField()
+    dl = models.CharField(max_length=384)
+    type = models.CharField(max_length=27)
+    class Meta:
+        db_table = u'func'
+
+class GeneralLog(models.Model):
+    event_time = models.DateTimeField()
+    user_host = models.TextField()
+    thread_id = models.IntegerField()
+    server_id = models.IntegerField()
+    command_type = models.CharField(max_length=192)
+    argument = models.TextField()
+    class Meta:
+        db_table = u'general_log'
+
+class HelpCategory(models.Model):
+    help_category_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=192, unique=True)
+    parent_category_id = models.IntegerField(null=True, blank=True)
+    url = models.TextField()
+    class Meta:
+        db_table = u'help_category'
+
+class HelpKeyword(models.Model):
+    help_keyword_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=192, unique=True)
+    class Meta:
+        db_table = u'help_keyword'
+
+class HelpRelation(models.Model):
+    help_topic_id = models.IntegerField(primary_key=True)
+    help_keyword_id = models.IntegerField(primary_key=True)
+    class Meta:
+        db_table = u'help_relation'
+
+class HelpTopic(models.Model):
+    help_topic_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=192, unique=True)
+    help_category_id = models.IntegerField()
+    description = models.TextField()
+    example = models.TextField()
+    url = models.TextField()
+    class Meta:
+        db_table = u'help_topic'
+
+class Host(models.Model):
+    host = models.CharField(max_length=180, primary_key=True, db_column='Host') # Field name made lowercase.
+    db = models.CharField(max_length=192, primary_key=True, db_column='Db') # Field name made lowercase.
+    select_priv = models.CharField(max_length=3, db_column='Select_priv') # Field name made lowercase.
+    insert_priv = models.CharField(max_length=3, db_column='Insert_priv') # Field name made lowercase.
+    update_priv = models.CharField(max_length=3, db_column='Update_priv') # Field name made lowercase.
+    delete_priv = models.CharField(max_length=3, db_column='Delete_priv') # Field name made lowercase.
+    create_priv = models.CharField(max_length=3, db_column='Create_priv') # Field name made lowercase.
+    drop_priv = models.CharField(max_length=3, db_column='Drop_priv') # Field name made lowercase.
+    grant_priv = models.CharField(max_length=3, db_column='Grant_priv') # Field name made lowercase.
+    references_priv = models.CharField(max_length=3, db_column='References_priv') # Field name made lowercase.
+    index_priv = models.CharField(max_length=3, db_column='Index_priv') # Field name made lowercase.
+    alter_priv = models.CharField(max_length=3, db_column='Alter_priv') # Field name made lowercase.
+    create_tmp_table_priv = models.CharField(max_length=3, db_column='Create_tmp_table_priv') # Field name made lowercase.
+    lock_tables_priv = models.CharField(max_length=3, db_column='Lock_tables_priv') # Field name made lowercase.
+    create_view_priv = models.CharField(max_length=3, db_column='Create_view_priv') # Field name made lowercase.
+    show_view_priv = models.CharField(max_length=3, db_column='Show_view_priv') # Field name made lowercase.
+    create_routine_priv = models.CharField(max_length=3, db_column='Create_routine_priv') # Field name made lowercase.
+    alter_routine_priv = models.CharField(max_length=3, db_column='Alter_routine_priv') # Field name made lowercase.
+    execute_priv = models.CharField(max_length=3, db_column='Execute_priv') # Field name made lowercase.
+    trigger_priv = models.CharField(max_length=3, db_column='Trigger_priv') # Field name made lowercase.
+    class Meta:
+        db_table = u'host'
+
+class NdbBinlogIndex(models.Model):
+    position = models.BigIntegerField(db_column='Position') # Field name made lowercase.
+    file = models.CharField(max_length=765, db_column='File') # Field name made lowercase.
+    epoch = models.BigIntegerField(primary_key=True)
+    inserts = models.BigIntegerField()
+    updates = models.BigIntegerField()
+    deletes = models.BigIntegerField()
+    schemaops = models.BigIntegerField()
+    class Meta:
+        db_table = u'ndb_binlog_index'
+
+class Player(models.Model):
+    firstname = models.CharField(max_length=600, blank=True)
+    lastname = models.CharField(max_length=600, blank=True)
+    dob = models.DateField(null=True, blank=True)
+    id = models.IntegerField(primary_key=True)
+    teamid = models.IntegerField(null=True, blank=True)
+    class Meta:
+        db_table = u'player'
+
+class Plugin(models.Model):
+    name = models.CharField(max_length=192, primary_key=True)
+    dl = models.CharField(max_length=384)
+    class Meta:
+        db_table = u'plugin'
+
+class Proc(models.Model):
+    db = models.CharField(max_length=192, primary_key=True)
+    name = models.CharField(max_length=192, primary_key=True)
+    type = models.CharField(max_length=27, primary_key=True)
+    specific_name = models.CharField(max_length=192)
+    language = models.CharField(max_length=9)
+    sql_data_access = models.CharField(max_length=51)
+    is_deterministic = models.CharField(max_length=9)
+    security_type = models.CharField(max_length=21)
+    param_list = models.TextField()
+    returns = models.TextField()
+    body = models.TextField()
+    definer = models.CharField(max_length=231)
+    created = models.DateTimeField()
+    modified = models.DateTimeField()
+    sql_mode = models.CharField(max_length=1434)
+    comment = models.TextField()
+    character_set_client = models.CharField(max_length=96, blank=True)
+    collation_connection = models.CharField(max_length=96, blank=True)
+    db_collation = models.CharField(max_length=96, blank=True)
+    body_utf8 = models.TextField(blank=True)
+    class Meta:
+        db_table = u'proc'
+
+class ProcsPriv(models.Model):
+    host = models.CharField(max_length=180, primary_key=True, db_column='Host') # Field name made lowercase.
+    db = models.CharField(max_length=192, primary_key=True, db_column='Db') # Field name made lowercase.
+    user = models.CharField(max_length=48, primary_key=True, db_column='User') # Field name made lowercase.
+    routine_name = models.CharField(max_length=192, primary_key=True, db_column='Routine_name') # Field name made lowercase.
+    routine_type = models.CharField(max_length=27, primary_key=True, db_column='Routine_type') # Field name made lowercase.
+    grantor = models.CharField(max_length=231, db_column='Grantor') # Field name made lowercase.
+    proc_priv = models.CharField(max_length=81, db_column='Proc_priv') # Field name made lowercase.
+    timestamp = models.DateTimeField(db_column='Timestamp') # Field name made lowercase.
+    class Meta:
+        db_table = u'procs_priv'
+
+class ProxiesPriv(models.Model):
+    host = models.CharField(max_length=180, primary_key=True, db_column='Host') # Field name made lowercase.
+    user = models.CharField(max_length=48, primary_key=True, db_column='User') # Field name made lowercase.
+    proxied_host = models.CharField(max_length=180, primary_key=True, db_column='Proxied_host') # Field name made lowercase.
+    proxied_user = models.CharField(max_length=48, primary_key=True, db_column='Proxied_user') # Field name made lowercase.
+    with_grant = models.IntegerField(db_column='With_grant') # Field name made lowercase.
+    grantor = models.CharField(max_length=231, db_column='Grantor') # Field name made lowercase.
+    timestamp = models.DateTimeField(db_column='Timestamp') # Field name made lowercase.
+    class Meta:
+        db_table = u'proxies_priv'
+
+class Servers(models.Model):
+    server_name = models.CharField(max_length=192, primary_key=True, db_column='Server_name') # Field name made lowercase.
+    host = models.CharField(max_length=192, db_column='Host') # Field name made lowercase.
+    db = models.CharField(max_length=192, db_column='Db') # Field name made lowercase.
+    username = models.CharField(max_length=192, db_column='Username') # Field name made lowercase.
+    password = models.CharField(max_length=192, db_column='Password') # Field name made lowercase.
+    port = models.IntegerField(db_column='Port') # Field name made lowercase.
+    socket = models.CharField(max_length=192, db_column='Socket') # Field name made lowercase.
+    wrapper = models.CharField(max_length=192, db_column='Wrapper') # Field name made lowercase.
+    owner = models.CharField(max_length=192, db_column='Owner') # Field name made lowercase.
+    class Meta:
+        db_table = u'servers'
+
+class SlowLog(models.Model):
+    start_time = models.DateTimeField()
+    user_host = models.TextField()
+    query_time = models.TextField() # This field type is a guess.
+    lock_time = models.TextField() # This field type is a guess.
+    rows_sent = models.IntegerField()
+    rows_examined = models.IntegerField()
+    db = models.CharField(max_length=1536)
+    last_insert_id = models.IntegerField()
+    insert_id = models.IntegerField()
+    server_id = models.IntegerField()
+    sql_text = models.TextField()
+    class Meta:
+        db_table = u'slow_log'
+
+class TablesPriv(models.Model):
+    host = models.CharField(max_length=180, primary_key=True, db_column='Host') # Field name made lowercase.
+    db = models.CharField(max_length=192, primary_key=True, db_column='Db') # Field name made lowercase.
+    user = models.CharField(max_length=48, primary_key=True, db_column='User') # Field name made lowercase.
+    table_name = models.CharField(max_length=192, primary_key=True, db_column='Table_name') # Field name made lowercase.
+    grantor = models.CharField(max_length=231, db_column='Grantor') # Field name made lowercase.
+    timestamp = models.DateTimeField(db_column='Timestamp') # Field name made lowercase.
+    table_priv = models.CharField(max_length=294, db_column='Table_priv') # Field name made lowercase.
+    column_priv = models.CharField(max_length=93, db_column='Column_priv') # Field name made lowercase.
+    class Meta:
+        db_table = u'tables_priv'
+
+class Team(models.Model):
+    id = models.IntegerField(primary_key=True, db_column='ID') # Field name made lowercase.
+    team_name = models.CharField(max_length=600, blank=True)
+    datejoined = models.DateField(null=True, blank=True)
+    class Meta:
+        db_table = u'team'
+
+class TimeZone(models.Model):
+    time_zone_id = models.IntegerField(primary_key=True, db_column='Time_zone_id') # Field name made lowercase.
+    use_leap_seconds = models.CharField(max_length=3, db_column='Use_leap_seconds') # Field name made lowercase.
+    class Meta:
+        db_table = u'time_zone'
+
+class TimeZoneLeapSecond(models.Model):
+    transition_time = models.BigIntegerField(primary_key=True, db_column='Transition_time') # Field name made lowercase.
+    correction = models.IntegerField(db_column='Correction') # Field name made lowercase.
+    class Meta:
+        db_table = u'time_zone_leap_second'
+
+class TimeZoneName(models.Model):
+    name = models.CharField(max_length=192, primary_key=True, db_column='Name') # Field name made lowercase.
+    time_zone_id = models.IntegerField(db_column='Time_zone_id') # Field name made lowercase.
+    class Meta:
+        db_table = u'time_zone_name'
+
+class TimeZoneTransition(models.Model):
+    time_zone_id = models.IntegerField(primary_key=True, db_column='Time_zone_id') # Field name made lowercase.
+    transition_time = models.BigIntegerField(primary_key=True, db_column='Transition_time') # Field name made lowercase.
+    transition_type_id = models.IntegerField(db_column='Transition_type_id') # Field name made lowercase.
+    class Meta:
+        db_table = u'time_zone_transition'
+
+class TimeZoneTransitionType(models.Model):
+    time_zone_id = models.IntegerField(primary_key=True, db_column='Time_zone_id') # Field name made lowercase.
+    transition_type_id = models.IntegerField(primary_key=True, db_column='Transition_type_id') # Field name made lowercase.
+    offset = models.IntegerField(db_column='Offset') # Field name made lowercase.
+    is_dst = models.IntegerField(db_column='Is_DST') # Field name made lowercase.
+    abbreviation = models.CharField(max_length=24, db_column='Abbreviation') # Field name made lowercase.
+    class Meta:
+        db_table = u'time_zone_transition_type'
+
+class User(models.Model):
+    host = models.CharField(max_length=180, primary_key=True, db_column='Host') # Field name made lowercase.
+    user = models.CharField(max_length=48, primary_key=True, db_column='User') # Field name made lowercase.
+    password = models.CharField(max_length=123, db_column='Password') # Field name made lowercase.
+    select_priv = models.CharField(max_length=3, db_column='Select_priv') # Field name made lowercase.
+    insert_priv = models.CharField(max_length=3, db_column='Insert_priv') # Field name made lowercase.
+    update_priv = models.CharField(max_length=3, db_column='Update_priv') # Field name made lowercase.
+    delete_priv = models.CharField(max_length=3, db_column='Delete_priv') # Field name made lowercase.
+    create_priv = models.CharField(max_length=3, db_column='Create_priv') # Field name made lowercase.
+    drop_priv = models.CharField(max_length=3, db_column='Drop_priv') # Field name made lowercase.
+    reload_priv = models.CharField(max_length=3, db_column='Reload_priv') # Field name made lowercase.
+    shutdown_priv = models.CharField(max_length=3, db_column='Shutdown_priv') # Field name made lowercase.
+    process_priv = models.CharField(max_length=3, db_column='Process_priv') # Field name made lowercase.
+    file_priv = models.CharField(max_length=3, db_column='File_priv') # Field name made lowercase.
+    grant_priv = models.CharField(max_length=3, db_column='Grant_priv') # Field name made lowercase.
+    references_priv = models.CharField(max_length=3, db_column='References_priv') # Field name made lowercase.
+    index_priv = models.CharField(max_length=3, db_column='Index_priv') # Field name made lowercase.
+    alter_priv = models.CharField(max_length=3, db_column='Alter_priv') # Field name made lowercase.
+    show_db_priv = models.CharField(max_length=3, db_column='Show_db_priv') # Field name made lowercase.
+    super_priv = models.CharField(max_length=3, db_column='Super_priv') # Field name made lowercase.
+    create_tmp_table_priv = models.CharField(max_length=3, db_column='Create_tmp_table_priv') # Field name made lowercase.
+    lock_tables_priv = models.CharField(max_length=3, db_column='Lock_tables_priv') # Field name made lowercase.
+    execute_priv = models.CharField(max_length=3, db_column='Execute_priv') # Field name made lowercase.
+    repl_slave_priv = models.CharField(max_length=3, db_column='Repl_slave_priv') # Field name made lowercase.
+    repl_client_priv = models.CharField(max_length=3, db_column='Repl_client_priv') # Field name made lowercase.
+    create_view_priv = models.CharField(max_length=3, db_column='Create_view_priv') # Field name made lowercase.
+    show_view_priv = models.CharField(max_length=3, db_column='Show_view_priv') # Field name made lowercase.
+    create_routine_priv = models.CharField(max_length=3, db_column='Create_routine_priv') # Field name made lowercase.
+    alter_routine_priv = models.CharField(max_length=3, db_column='Alter_routine_priv') # Field name made lowercase.
+    create_user_priv = models.CharField(max_length=3, db_column='Create_user_priv') # Field name made lowercase.
+    event_priv = models.CharField(max_length=3, db_column='Event_priv') # Field name made lowercase.
+    trigger_priv = models.CharField(max_length=3, db_column='Trigger_priv') # Field name made lowercase.
+    create_tablespace_priv = models.CharField(max_length=3, db_column='Create_tablespace_priv') # Field name made lowercase.
+    ssl_type = models.CharField(max_length=27)
+    ssl_cipher = models.TextField()
+    x509_issuer = models.TextField()
+    x509_subject = models.TextField()
+    max_questions = models.IntegerField()
+    max_updates = models.IntegerField()
+    max_connections = models.IntegerField()
+    max_user_connections = models.IntegerField()
+    plugin = models.CharField(max_length=192, blank=True)
+    authentication_string = models.TextField(blank=True)
+    class Meta:
+        db_table = u'user'
+
+class Venue(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=600, blank=True)
+    street = models.CharField(max_length=600, blank=True)
+    city = models.CharField(max_length=600, blank=True)
+    state = models.CharField(max_length=600, blank=True)
+    zip = models.CharField(max_length=600, blank=True)
+    class Meta:
+        db_table = u'venue'
+

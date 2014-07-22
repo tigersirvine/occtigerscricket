@@ -1,0 +1,70 @@
+        
+
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+    xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
+    lang="{% firstof LANGUAGE_CODE 'en' %}">
+  <head>
+    
+
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block css %}
+        <!-- <link rel="stylesheet" type="text/css" href="/media/dhtmlx3.6/dhtmlxMenu/codebase/skins/dhtmlxmenu_dhx_blue.css"/> -->
+	<link rel="stylesheet" type="text/css" href="/media/dhtmlx3.6/dhtmlxMenu/codebase/skins/dhtmlxmenu_dhx_terrace.css">
+    {% endblock %}
+
+    {% block preload_js %}
+    <script src="/media/dhtmlx3.6/dhtmlxMenu/codebase/dhtmlxcommon.js"></script>
+    <script src="/media/dhtmlx3.6/dhtmlxMenu/codebase/dhtmlxmenu.js"></script>
+    <script src="/media/dhtmlx3.6/dhtmlxMenu/codebase/ext/dhtmlxmenu_ext.js"></script>
+    <script src="/media/js/jquery/jquery-2.0.3.min.js"></script>
+    <style>
+body {
+	font: normal .8em/1.5em Arial, Helvetica, sans-serif;
+	background: white;
+	width: 900px;
+        margin-right:auto;
+        margin-left:120px;
+	color: #666;
+        
+}
+      </style>
+    {% endblock %}
+
+    {% block extra-head %}{% endblock %}
+  </head>
+
+  <body>
+     {% include "header.html" %}
+     {% include "menu.html" %}
+     <div class="columns">
+      <div id="content" class="column">
+        {% block content-header %}
+          {% if error %}<div class="error">{{ error }}</div>{% endif %}
+          {% if info %}<div class="info">{{ info }}</div>{% endif %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="info">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+      </div>
+
+      <div id="sidebar" class="column">
+        {% block sidebar %}
+        {% endblock %}
+      </div>
+    </div>
+
+    <div id="footer">
+    </div>
+    {% block js %}
+    {% endblock %}
+  </body>
+</html>

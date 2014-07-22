@@ -1,0 +1,23 @@
+<link rel="stylesheet" type="text/css" href="/media/dhtmlx/codebase/dhtmlx.css"/>
+<link rel="stylesheet" type="text/css" href="/media/dhtmlx/skins/terrace/dhtmlx.css">
+ <div id="menuObj" style="margin-top:5px;"></div>
+
+<script>
+
+var menu = new dhtmlXMenuObject("menuObj");
+//menu.setIconsPath("/media/dhtmlx/skins/terrace/imgs/");
+//menu.setSkin("dhx_terrace");
+menu.setSkin("dhx_skyblue");
+menu.setIconsPath("/media/dhtmlx/codebase/imgs/");
+// initing;
+menu.addNewSibling(null, "home", "", false , "house.png");
+menu.addNewSibling("home", "teams", "Teams", false)
+menu.setHref("teams", "/mainapp/teams/", "blank");
+menu.addNewSibling("teams", "scorecard", "Score Card", false);
+menu.setHref("scorecard", "/mainapp/scorecard/", "blank");
+</script>
+
+
+
+        
+ 

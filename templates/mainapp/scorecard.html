@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+div.gridbox table.hdr td {
+font-family:arial;
+font-size:10px;
+}
+div.gridbox table.obj td {
+font-family:Arial;
+font-size:8px;
+}
+</style>
+    <script>
+function initBattingGrid(mygrid, url ) {
+    mygrid.setImagePath("/media/dhtmlx/sources/dhtmlxGrid/codebase/imgs/"); 
+    mygrid.setSkin("dhx_skyblue");
+    //mygrid.setHeader("NO,Batsman,Out,Fielder,Bowler,Runs,Balls,4s,6s");//the headers of columns          
+    //mygrid.setInitWidths("10,150,15,100,100,20,20,20,20");          //the widths of columns          
+    //mygrid.setColAlign("right,left,left,left,left,right,right,right,right");       //the alignment of columns           
+    mygrid.load(url);
+    mygrid.init();      //finishes initialization and renders the grid on the page
+};
+
+function initBowlingGrid(mygrid, url ) {
+    mygrid.setImagePath("/media/dhtmlx/sources/dhtmlxGrid/codebase/imgs/"); 
+    mygrid.setSkin("dhx_skyblue");
+    mygrid.load(url);
+    mygrid.init();      //finishes initialization and renders the grid on the page
+};
+
+
+$( document ).ready(function() {
+       scoreboardLayout = new dhtmlXLayoutObject( "scoreboardlayout", "3J");
+       scoreboardLayout.cells("a").setText("Macth Details");
+       scoreboardLayout.cells("a").setWidth(100);
+       scoreboardLayout.cells("b").setWidth(900);
+       scoreboardLayout.cells("c").setWidth(100);
+       //scoreboardLayout.cells("d").setWidth(400);
+       //scoreboardLayout.cells("e").setWidth(400);
+
+       //scoreboardLayout.cells("b").hideHeader(); 
+
+       //scoreboardLayout.cells("d").setText("Team A Score Board");
+       //scoreboardLayout.cells("e").setText("Team B Score Board");
+       teamALyt = scoreboardLayout.cells("b").attachLayout("2E");
+       //teamBLyt = scoreboardLayout.cells("e").attachLayout("2E");
+       teamALyt.cells("a").hideHeader();
+       teamALyt.cells("b").hideHeader();
+       //teamBLyt.cells("a").hideHeader();
+       //teamBLyt.cells("b").hideHeader();
+       teamABatting = teamALyt.cells("a").attachGrid();
+       teamBBowling = teamALyt.cells("b").attachGrid();
+       var url = "/mainapp/getBattingScGridData/";
+       initBattingGrid(teamABatting , url );
+       var url = "/mainapp/getBowlingScGridData/";
+       initBowlingGrid(teamBBowling , url );
+
+       //teamBBatting = teamBLyt.cells("a").attachGrid();
+       //teamABowling = teamBLyt.cells("b").attachGrid();
+       //var url = "/mainapp/getBattingScGridData/";
+       //initBattingGrid(teamBBatting , url );
+
+});
+    </script>
+<!-- <div id="scoreboard_container" style="width:200px;height:100px;"></div> -->
+<div id="winVP" stle="width:100%;height:100%"></div>
+<div id="scoreboardlayout" style="width:1200px;height:600px;"></div>
+
+{% endblock %}
