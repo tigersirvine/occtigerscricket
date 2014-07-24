@@ -1,23 +1,60 @@
 <link rel="stylesheet" type="text/css" href="/media/dhtmlx/codebase/dhtmlx.css"/>
 <link rel="stylesheet" type="text/css" href="/media/dhtmlx/skins/terrace/dhtmlx.css">
- <div id="menuObj" style="margin-top:5px;"></div>
 
-<script>
 
-var menu = new dhtmlXMenuObject("menuObj");
-//menu.setIconsPath("/media/dhtmlx/skins/terrace/imgs/");
-//menu.setSkin("dhx_terrace");
-menu.setSkin("dhx_skyblue");
-menu.setIconsPath("/media/dhtmlx/codebase/imgs/");
-// initing;
-menu.addNewSibling(null, "home", "", false , "house.png");
-menu.addNewSibling("home", "teams", "Teams", false)
-menu.setHref("teams", "/mainapp/teams/", "blank");
-menu.addNewSibling("teams", "scorecard", "Score Card", false);
-menu.setHref("scorecard", "/mainapp/scorecard/", "blank");
+<!-- END Demo CSS -->
+
+<!-- BEGIN Navigation bar CSS - This is where the magic happens -->
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+	// Requried: Navigation bar drop-down
+	$("nav ul li").hover(function() {
+		$(this).addClass("active");
+		$(this).find("ul").show().animate({opacity: 1}, 400);
+		},function() {
+		$(this).find("ul").hide().animate({opacity: 0}, 200);
+		$(this).removeClass("active");
+	});
+	
+	// Requried: Addtional styling elements
+	$('nav ul li ul li:first-child').prepend('<li class="arrow"></li>');
+	$('nav ul li:first-child').addClass('first');
+	$('nav ul li:last-child').addClass('last');
+	$('nav ul li ul').parent().append('<span class="dropdown"></span>').addClass('drop');
+
+});
 </script>
+		<!-- BEGIN Dark navigation bar -->
+		<nav class="blue">
+			<ul class="clear">
+				<li><a href="/">Home</a></li>
+				<li><a href="#">Results</a></li>
+				
+				<li><a href="#">Statistics</a>
+					<ul>
+						<li><a href="#">Bolwing</a></li>
+						<li><a href="#">Batting</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Teams</a></li>
+				<li><a href="#">Data Management</a>
+				    	<ul>
+						<li><a href="#">Register Team</a></li>
+						<li><a href="{% url mainapp.views.scorecard %}">Enter Scorepard</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Fixture</a></li>
+				<li><a href="#">News</a></li>
+				<li><a href="#">My Schedule</a></li>
+				<li><a href="#">Contact us</a></li>
+				<li><a href="#">Login/Register</a></li>
+				<!--<li>
+				  <input class="searchbox" type="text" name="search"
 
-
-
-        
+				</li>-->
+			</ul>
+		</nav>
+		
  
